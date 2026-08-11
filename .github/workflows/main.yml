@@ -18,16 +18,14 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '21'
-          cache: 'gradle'
 
-      - name: Setup Gradle
+      - name: Setup Gradle 8.14
         uses: gradle/actions/setup-gradle@v3
-
-      - name: Generate Gradle wrapper
-        run: gradle wrapper --gradle-version 8.14
+        with:
+          gradle-version: '8.14'
 
       - name: Build
-        run: ./gradlew build
+        run: gradle build --no-daemon
 
       - name: Upload JAR artifact
         uses: actions/upload-artifact@v4
